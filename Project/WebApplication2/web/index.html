@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Responsive Header</title>
+    <style>
+    </style>
+</head>
+<body>
+  <header class="sticky">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- Your Logo Here -->
+               <a href="index.html"> <img src="image/logo.png" alt="Logo" width="120"></a>
+            </a>
+            <!-- Add data-toggle and data-target attributes for the button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <form class="form-inline mx-auto d-flex justify-content-center d-lg-inline">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                   
+                </div>
+            </form>
+            <div class="dropdown d-none d-lg-block">
+                <a href="#">Review and Rating</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+  <header>
+    <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <!-- Add the collapse navbar-collapse class and id -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto w-100">
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" ><i class="fa fa-book"></i> My Book</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="login.html"><i class="fa fa-list-alt"></i> Category</a>
+                  </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="blog.html"><i class="fa fa-book"></i> Blog</a>
+                  </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fa fa-microphone"></i> Podcast</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fa fa-headphones"></i> Audio Books</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fa fa-graduation-cap"></i> Tutorials</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#loginmodal" data-toggle="modal" data-target="#loginmodal"><i class="fa fa-user"></i>Login</a>
+                    </li>
+                    <!-- Add your other menu items here -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    <!--Slide bar started  -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+    
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/banner.jpg" alt="Los Angeles" class="d-block" style="width:100%">
+        <div class="carousel-caption">
+          <h3>Los Angeles</h3>
+          <p>We had such a great time in LA!</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="img/banner.jpg" alt="Chicago" class="d-block" style="width:100%">
+        <div class="carousel-caption">
+          <h3>Chicago</h3>
+          <p>Thank you, Chicago!</p>
+        </div> 
+      </div>
+      <div class="carousel-item">
+        <img src="img/banner.jpg" alt="New York" class="d-block" style="width:100%">
+        <div class="carousel-caption">
+          <h3>New York</h3>
+          <p>We love the Big Apple!</p>
+        </div>  
+      </div>
+    </div>
+    
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+    <!--  -->
+    <div class="container">
+        <center><h1>New Books</h1></center>
+        
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <a href="#loginmodal" data-toggle="modal" data-target="#loginmodal"><img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 1" ></a>
+              <div class="card-body">
+                <center>
+                  <h5 class="card-title">Book Title 1</h5>
+                <p class="card-text">Author: Author Name 1</p>
+                </center>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+                <center>
+                  <h5 class="card-title">Book Title 2</h5>
+                <p class="card-text">Author: Author Name 2</p>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+               <center>
+                <h5 class="card-title">Book Title 2</h5>
+                <p class="card-text">Author: Author Name 2</p>
+               </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+                <center>
+                  <h5 class="card-title">Book Title 2</h5>
+                  <p class="card-text">Author: Author Name 2</p>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+              <center>
+                <h5 class="card-title">Book Title 2</h5>
+                <p class="card-text">Author: Author Name 2</p>
+              </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+               <center>
+                <h5 class="card-title">Book Title 2</h5>
+                <p class="card-text">Author: Author Name 2</p>
+               </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+                <center>
+                  <h5 class="card-title">Book Title 2</h5>
+                <p class="card-text">Author: Author Name 2</p>
+                </center>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+              <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+              <div class="card-body">
+                <center><h5 class="card-title">Book Title 2</h5>
+                  <p class="card-text">Author: Author Name 2</p></center>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    
+
+
+  <!-- Top rated books -->
+  <div class="container">
+    <center><h1>Top Rated Books</h1></center>
+    
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 1">
+          <div class="card-body">
+           <center> <h5 class="card-title">Book Title 1</h5>
+            <p class="card-text">Author: Author Name 1</p></center>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+            <center>
+              <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+            </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+           <center> <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p></center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+            <center>
+              <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+            </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+           <center>
+            <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+           </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+           <center>
+            <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+           </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+            <center>
+              <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+            </center>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="card">
+          <img class="book" src="img/robinsharma.jpg" class="card-img-top" alt="Book 2">
+          <div class="card-body">
+            <center>
+              <h5 class="card-title">Book Title 2</h5>
+            <p class="card-text">Author: Author Name 2</p>
+            </center>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <section>
+
+<!-- Carousel wrapper -->
+<div
+  id="carouselMultiItemExample"
+  class="carousel slide carousel-dark text-center"
+  data-mdb-ride="carousel"
+>
+  <!-- Controls -->
+  <div class="d-flex justify-content-center mb-4">
+    <button
+      class="carousel-control-prev position-relative"
+      type="button"
+      data-mdb-target="#carouselMultiItemExample"
+      data-mdb-slide="prev"
+    >
+    
+    </button>
+    <button
+      class="carousel-control-next position-relative"
+      type="button"
+      data-mdb-target="#carouselMultiItemExample"
+      data-mdb-slide="next"
+    >
+    
+  </div>
+  <!-- Inner -->
+  <div class="carousel-inner py-4">
+    <!-- Single item -->
+    <div class="carousel-item active">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <img
+                src="img/blog1.jpeg"
+                class="card-img-top"
+                alt="Waterfall"
+                height="200px"
+                width="200px"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up the bulk
+                  of the card's content.
+                </p>
+                <a href="#!" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="card">
+              <img
+                src="img/blog2.jpg"
+                class="card-img-top"
+                alt="Sunset Over the Sea"
+                height="200px"
+                width="200px"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up the bulk
+                  of the card's content.
+                </p>
+                <a href="#!" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="card">
+              <img
+                src="img/blog4.jpg"
+                class="card-img-top"
+                alt="Sunset over the Sea"
+                height="200px"
+                width="200px"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up the bulk
+                  of the card's content.
+                </p>
+                <a href="#!" class="btn btn-primary">Read</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Carousel wrapper -->
+
+  </section>
+
+  <footer class="bg-dark text-light">
+    <div class="container">
+        <div class="row">
+            <!-- Quick Links Section -->
+            <div class="col-md-4">
+                <center><h5>Quick Links</h5></center>
+                <center>
+                  <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                </center>
+            </div>
+            
+            <!-- Social Handles Section -->
+            <div class="col-md-4">
+                <center><h5>Social Handles</h5></center>
+               <center> <ul class="list-unstyled">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+            </ul></center>
+            </div>
+            
+            <!-- Feedback Form Section -->
+            <div class="col-md-4">
+                <center><h5>Feedback</h5></center>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Your Feedback"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- login modal -------------------------------------------------------start -->
+<section>
+<!-- Modal -->
+<div id="loginmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Login if you have exiting account</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-body" id="modebody">
+        
+        <div class="container">
+          <h2>Login</h2>
+        
+          <form action="LogInCheck.jsp" id="loginForm" onsubmit="return validateForm()">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <div class="input-group">
+                      <input name="userName" type="text" class="form-control custom-form-control" id="username" placeholder="Username or email">
+                      <div class="input-group-append">
+                          <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="password">Password</label>
+                  <div class="input-group">
+                      <input name="password" type="password" class="form-control custom-form-control" id="password" placeholder="Password">
+                      <div class="input-group-append">
+                          <span class="input-group-text" onclick="togglePassword()">
+                              <i id="passwordToggle" class="fa fa-eye"></i>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="button" class="btn btn-secondary"><a href="ragistration.html">Signup</a></button>
+              <div class="form-check mt-3">
+                  <input type="checkbox" class="form-check-input" id="terms">
+                  <label class="form-check-label" for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+              </div>
+          </form>
+      </div>
+      <script>
+          var passwordVisible = true;
+  
+          function togglePassword() {
+              var passwordInput = document.getElementById("password");
+              var passwordToggle = document.getElementById("passwordToggle");
+  
+              if (passwordVisible) {
+                  passwordInput.type = "password";
+                  passwordToggle.className = "fa fa-eye-slash";
+              } else {
+                  passwordInput.type = "text";
+                  passwordToggle.className = "fa fa-eye";
+              }
+  
+              passwordVisible = !passwordVisible;
+          }
+          function validateForm() {
+              var username = document.getElementById("username").value;
+              var password = document.getElementById("password").value;
+  
+              if (username === "") {
+                  alert("Please enter your username.");
+                  return false;
+              }
+  
+              if (password === "") {
+                  alert("Please enter your password.");
+                  return false;
+              }
+              return true;
+          }
+      </script>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+ <!-- login modal -------------------------------------------------------end-->
+</body>
+</html>

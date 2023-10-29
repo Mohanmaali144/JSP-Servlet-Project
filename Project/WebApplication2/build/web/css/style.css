@@ -1,0 +1,58 @@
+
+/* Add styles to make the header sticky */
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+#menu
+{
+    z-index: 100;
+}
+
+.book
+{
+    margin-top: 10px;
+    height: 200px;
+    width: 150px;
+
+}
+.card
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+        footer {
+            padding: 20px 0; 
+        }
+
+        
+        .col-md-4 ul {
+            list-style: none; 
+        }
+
+        .col-md-4 a {
+            text-decoration: none;
+            color: #fff; 
+        }
+
+        
+        .col-md-4 a {
+            display: block; 
+        }
+
+        
+        .col-md-4 form {
+            text-align: center; 
+        }
+
+        .col-md-4 input[type="text"],
+        .col-md-4 input[type="email"],
+        .col-md-4 textarea {
+            margin-bottom: 10px; 
+        }

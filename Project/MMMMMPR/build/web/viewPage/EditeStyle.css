@@ -1,0 +1,169 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 26-Oct-2023, 7:03:20 pm
+    Author     : Mohan_Maali
+*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+
+}
+
+body {
+    background-color: rgb(61, 60, 60) !important;
+    /* border:2px solid red; */
+}
+
+.nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    position: relative;
+    background-color: rgb(118, 117, 119);
+    padding: 12px 20px;
+}
+
+.logo img {
+    width: 40px;
+    border-radius: 360px;
+}
+
+#logoname {
+
+    position: absolute;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #e5e8e8;
+    top: 22px;
+    left: 70px;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu li {
+    padding-left: 5px;
+    margin-right: 50px;
+
+}
+
+.menu li a {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(225, 223, 217);
+    /* text-align: center; */
+    transition: 0.15s ease-in-out;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(229, 248, 189);
+    transition: 0.15s ease-in-out;
+}
+
+.menu li a:hover:after {
+    width: 100%;
+}
+
+.open-menu,
+.close-menu {
+    position: absolute;
+    color: rgb(241, 238, 238);
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: none;
+}
+
+.open-menu {
+    top: 50%;
+    right: 20px;
+    margin-right: 50px;
+    transform: translateY(-50%);
+}
+
+.close-menu {
+    top: 20px;
+    right: 20px;
+}
+
+#check {
+    display: none;
+}
+
+
+@media screen and (min-width: 360px) and (max-width: 520px) {
+
+    * {
+        margin: 0;
+        padding: 0;
+
+
+    }
+
+    body {
+        background-color: rgb(61, 60, 60);
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 50vh;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 100;
+        background-color: rgb(63, 61, 59);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .menu li {
+        margin-top: 40px;
+        margin-right: 50px;
+    }
+
+    .menu li a {
+        padding: 10px;
+    }
+
+    .open-menu,
+    .close-menu {
+        display: block;
+    }
+
+    #check:checked~.menu {
+        right: 0;
+    }
+
+
+
+}
+/* --------------------------------------------------------------- */
+
+
+
+#mobile, #email,#gender,#name , #father
+{
+    width: 300px;
+}
+
+
+/* --------------------------------------------------------------------- */

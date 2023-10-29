@@ -1,0 +1,14 @@
+Shashwat Library 
+
+data base:
+	> use librarydata; 
+
+
+
+	> table: 
+
+	>Registrationdata :(1)
+
+ 		create table registrationdata (sno int unique auto_increment not null,name varchar(30) not null,
+ 		username varchar(40)unique not null,password varchar(50) not null,
+		mobile varchar(10)not null, DOB date not null , gender varchar(8)not null);

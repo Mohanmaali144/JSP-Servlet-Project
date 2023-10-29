@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"   />
+    <title>Mohan Maali</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="editprofile.css">
+</head>
+
+<body>
+
+    <div style="overflow: hidden;">
+        <header>
+            <nav>
+                <ul class='nav-bar'>
+                    <li class='logo'> <a data-toggle="modal" data-target="#myModal" data-toggle="modal"
+                            data-target="#centralModalInfo"><img src='./image/mohan.jpg' /><span
+                                id="logoname">MP</span></a></li>
+                    <input type='checkbox' id='check' />
+                    <span class="menu">
+                        <li><a href="Index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contect.html">Contect</a></li>
+                        <li><a href="">Work</a></li>
+                        <li><a href="">Log Out</a></li>
+                        <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
+                    </span>
+                    <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+                </ul>
+            </nav>
+        </header>
+    <!-- user profile section  -->
+
+
+
+
+
+    <!--   -->
+        <section>
+
+        </section>
+<!--  -----------------------------------------------------------------------------, -->
+<!--  edit field start here -->
+                    <div class="container" >
+                        <div
+                            class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 edit_information">
+                            <form action="" method="POST">
+                                <h3 class="text-center">Edit Profile</h3>
+                                <div class="row">
+                                    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input onkeyup="validatName()" id="name" type="text" name="name" class="form-control"
+                                                   value= "" required  placeholder="enter name">
+                                            <span style="color: red;" id="errorName">*</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input onkeyup="validatFName()" id="father" type="text" name="father" class="form-control"
+                                                   value="" required placeholder="enter Father Name">
+                                            <span style="color: red;" id="errorFName">*</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input  onkeyup="validatEmail()" id="email" type="email" name="email" class="form-control"
+                                                    value="" required placeholder="enter email-id">
+                                            <span style="color: red;" id="errorEmail">*</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <input  onkeyup="validatMobile()"  id="mobile" type="tel" name="mobile" class="form-control"
+                                                    value="" required placeholder="enter mobile number">
+                                            <span style="color: red;" id="errorMobile">*</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <select name="gender" class="form-control" id="gender" value="gender" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Female">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 submit">
+                                        <div class="form-group">
+                                            <input style="width: 300px;" type="submit" class="btn btn-success"
+                                                   value="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                             <div><a href="#changepassword" data-toggle="modal" data-target="#changepassword">Change password</a></div>
+                        </div>
+                            <div  style="color: red; align-items: center;"><span id="error"></span></div>
+                        </div>
+                    </div>
+
+
+<!-- edit filed end here  -->
+<!-- --------------------------------------------------------------------------------------------------------- -->
+
+<!-- --------------------------------------------------------------------------------------------------------- -->
+
+
+
+ <div class="modal fade top" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+ aria-hidden="true" data-backdrop="true">
+<div class="modal-dialog modal-frame modal-top modal-notify modal-success" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            Reset Password
+        </div>
+        <div class="modal-body">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div style="display: flex; justify-content: center; flex-direction: row;">
+                    <div class="container">
+                        <div>
+                            <form action="" method="POST">
+                                <div class="col">
+                                    <div class=" changepassword">
+                                        <div class="form-group">
+                                            <input onkeyup="validatName()" id="newpassword" type="password" name="newpassword" class="form-control"
+                                                   placeholder="Old password"   required>
+                                            <span style="color: red;" id="errorName">*</span>
+                                        </div>
+                                    </div>
+                                    <div class=" changepassword">
+                                        <div class="form-group">
+                                            <input onkeyup="validatFName()" id="cpassword" type="password" name="cpassword" class="form-control"
+                                            placeholder="New password" required>
+                                            <span style="color: red;" id="errorFName">*</span>
+                                        </div>
+                                    </div>
+                                    <div class=" changepassword">
+                                        <div class="form-group">
+                                            <input onkeyup="validatFName()" id="cpassword" type="password" name="cpassword" class="form-control"
+                                            placeholder="confirm password" required>
+                                            <span style="color: red;" id="errorFName">*</span>
+                                        </div>
+                                    </div>
+                                    <div class=" changepassword">
+                                        <div class="form-group">
+                                            <button style="width: 250px;" type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div  style="color: red; align-items: center;"><span id="error"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+                <a style="width: 250px;" type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal" > No, thanks</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>
