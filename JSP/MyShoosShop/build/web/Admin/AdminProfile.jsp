@@ -5,8 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import = "java.sql.ResultSet"%>
+
+<% 
+         response.setHeader("Cache-Control", "No-Cache");
+         response.setHeader("Cache-Control", "No-Store");  
+         ResultSet adrs = (ResultSet)session.getAttribute("adrs");              
+        if(adrs!=null){
+%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +46,7 @@
                         </li>
                     </ul>
                     <br>
-                   <a href="mail-compose.html" class="btn btn-warning btn-block btn-compose-email">More-Work</a>
+                    <a href="mail-compose.html" class="btn btn-warning btn-block btn-compose-email">More-Work</a>
                     <ul class="nav nav-pills nav-stacked nav-email mb-20 rounded shadow">
 
 
@@ -47,8 +56,8 @@
                             </a>
                         </li>
                     </ul>
-                   <br>
-                   <a href="mail-compose.html" class="btn btn-warning btn-block btn-compose-email">More</a>
+                    <br>
+                    <a href="mail-compose.html" class="btn btn-warning btn-block btn-compose-email">More</a>
                     <ul class="nav nav-pills nav-stacked nav-email mb-20 rounded shadow">
                         <li>
                             <a href="#">
@@ -101,48 +110,48 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-8">
                                         <ul class="list-group">
-                                            <li class="list-group-item">Name</li>
-                                            <li class="list-group-item">Id</li>
+                                            <li class="list-group-item">&nbsp;<%=adrs.getString("fullname")%></li>
+                                            <li class="list-group-item">&nbsp;<%=adrs.getString("AdminId")%></li>
                                             <li class="list-group-item">Male</li>
 
-                                            <li class="list-group-item"><i class="fa fa-phone"></i> mobile</li>
-                                            <li class="list-group-item"><i class="fa fa-envelope"></i> Admin@.com</li>
+                                            <li class="list-group-item">&nbsp;<i class="fa fa-phone"></i> <%="7876565656"%></li>
+                                            <li class="list-group-item">&nbsp;<i class="fa fa-envelope"></i> <%=adrs.getString("email")%></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div> <br>
-                       <div class="bs-callout bs-callout-danger">
-                           <h4>Summary</h4>
-                           <p>
-                              Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
-                              te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
-                           </p>
-                           <p>
-                              Odio recteque expetenda eum ea, cu atqui maiestatis cum. Te eum nibh laoreet, case nostrud nusquam an vis. 
-                              Clita debitis apeirian et sit, integre iudicabit elaboraret duo ex. Nihil causae adipisci id eos.
-                           </p>
+                        <div class="bs-callout bs-callout-danger">
+                            <h4>Summary</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, ea vel prima adhuc, scripta liberavisse ea quo, te vel vidit mollis complectitur. Quis verear mel ne. Munere vituperata vis cu, 
+                                te pri duis timeam scaevola, nam postea diceret ne. Cum ex quod aliquip mediocritatem, mei habemus persecuti mediocritatem ei.
+                            </p>
+                            <p>
+                                Odio recteque expetenda eum ea, cu atqui maiestatis cum. Te eum nibh laoreet, case nostrud nusquam an vis. 
+                                Clita debitis apeirian et sit, integre iudicabit elaboraret duo ex. Nihil causae adipisci id eos.
+                            </p>
                         </div>
                         <div class="bs-callout bs-callout-danger">
-                           <h4>Research Interests</h4>
-                           <p>
-                              Software Engineering, Machine Learning, Image Processing,
-                              Computer Vision, Artificial Neural Networks, Data Science,
-                              Evolutionary Algorithms.
-                           </p>
+                            <h4>Research Interests</h4>
+                            <p>
+                                Software Engineering, Machine Learning, Image Processing,
+                                Computer Vision, Artificial Neural Networks, Data Science,
+                                Evolutionary Algorithms.
+                            </p>
                         </div>
-                      <!-- --  
-                        <div class="bs-callout bs-callout-danger">
-                           <h4>Key Expertise</h4>
-                           <ul class="list-group">
-                              <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc </li>
-                              <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
-                              <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
-                              <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
-                              <li class="list-group-item">Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
-                              <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
-                           </ul>
-                        </div>
+                        <!-- --  
+                          <div class="bs-callout bs-callout-danger">
+                             <h4>Key Expertise</h4>
+                             <ul class="list-group">
+                                <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc </li>
+                                <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
+                                <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
+                                <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
+                                <li class="list-group-item">Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
+                                <li class="list-group-item"> Lorem ipsum dolor sit amet, ea vel prima adhuc</li>
+                             </ul>
+                          </div>
                         -->
 
                     </div>
@@ -154,3 +163,11 @@
     </div>
 </body>
 </html>
+
+
+<%}else{
+
+    response.sendRedirect("AdminLogin.jsp");
+
+    }
+%>

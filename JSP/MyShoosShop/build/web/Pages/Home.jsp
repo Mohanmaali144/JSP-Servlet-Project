@@ -5,8 +5,14 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<html>
+<%@page import = "java.sql.ResultSet"%>
 
+<% 
+                   ResultSet rs = (ResultSet)session.getAttribute("rs");
+                  
+                   if(rs!=null){
+%>
+<html>
     <head>
         <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
         <link rel="stylesheet" href="css/style.css">
@@ -24,7 +30,7 @@
             <div class="slide-container active">
                 <div class="slide">
                     <div class="content">
-                        <span>Nike Sport Shoes</span>
+                        <span> Spoort Shoes</span>
                         <h3>Nike Metcon Shoes</h3>
                         <p>
                             Nike sports shoes best qulity long lastic sole made by nike by tested and petend farmula
@@ -323,7 +329,7 @@
             <h1 class="heading">Team <span>Weblog</span></h1>
             <div class="box-container">
                 <div class="box">
-                    <img src="" alt="">
+                    <img src="./img/team/mohan.jpg" alt="">
                     <h3></h3>
                     <p>
 
@@ -337,7 +343,7 @@
                     </div>
                 </div>
                 <div class="box">
-                    <img src="" alt="">
+                    <img src="./img/team/mohan.jpg" alt="">
                     <h3></h3>
                     <p>
 
@@ -370,9 +376,19 @@
         <!--end news-->
         <section class="cridet" id="cridet">
             <div class="box">
-                <h3>all reserved by Nitin Malviya</h3>
+                <h3>all reserved by Mohan Maali</h3>
             </div>
         </section>
     </body>
+    <footer>
+        <jsp:include page="Footer.jsp"/>
+
+    </footer>
 
 </html>
+<% } 
+else{
+
+    response.sendRedirect("LoginUser.jsp");
+}
+%>

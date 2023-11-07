@@ -3,7 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
+<%@page import = "java.io.IOException"%>
+<%@page import = "java.sql.Connection"%>
+<%@page import = "java.sql.DriverManager"%>
+<%@page import = " java.sql.PreparedStatement"%>
+<%@page import = " java.sql.SQLException"%>
+<%@page import = " java.sql.ResultSet"%>
 
+
+<%@page import = "java.sql.ResultSet"%>
+<% 
+    
+    
+         response.setHeader("Cache-Control", "No-Cache");
+         response.setHeader("Cache-Control", "No-Store");  
+         ResultSet adrs = (ResultSet)session.getAttribute("adrs");
+                 
+            if(adrs!=null){
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -72,8 +89,8 @@
         </style>
     </head>
     <body>
-     
-        
+
+
         <jsp:include page="AdminNav.jsp"/>
 
 
@@ -81,29 +98,29 @@
 
 
 
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-
-            <div class="offcanvas-header">
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div>
-                    <ul>
-                        <li> </i><a href="Adminpanel.html">Admin Deshboard</a></li>
-                        <li><a href="Userinfo.html">User Info</a></li>
-                        <li><a href="#">Order Info</a></li>
-                        <li><a href="#">Shop Info</a></li>
-                    </ul>
-                </div>
-                <hr>
-                <div>
-                    <ul>
-                        <li></i><a href="#">Logout</a></li>
-                        <li><a href="#">Sttings</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <!--        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div>
+                            <ul>
+                                <li> </i><a href="Adminpanel.html">Admin Deshboard</a></li>
+                                <li><a href="Userinfo.html">User Info</a></li>
+                                <li><a href="#">Order Info</a></li>
+                                <li><a href="#">Shop Info</a></li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div>
+                            <ul>
+                                <li></i><a href="#">Logout</a></li>
+                                <li><a href="#">Sttings</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>-->
 
 
 
@@ -111,17 +128,6 @@
 
         <!-- off canvas end -------- ----------------------------------------------------------- -->
 
-        <sql:setDataSource
-            var="dataSource"
-            driver="com.mysql.jdbc.Driver"
-            url="jdbc:mysql://localhost:3306/Myproject"
-            user="root"
-            password="root"
-            />
-
-        <sql:query var="result" dataSource="${dataSource}">
-            SELECT * FROM user_details;
-        </sql:query>
 
 
         <!-- table  -->
@@ -160,98 +166,122 @@
                 </th>
             </tr>
 
+            <%
+//    String check = request.getParameter("password");
+    if(true){     
+    Connection con = null;
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/myproject", "root", "root");
+                System.out.println("Connection succes");
 
-            <c:forEach var="row" items="${result.rows}">
-                <tr>
-                    <td><input name="userId" type="text" value="${row.userId}"/></td>
-                    <td><c:out value="${row.userName}" /></td>
-                    <td><c:out value="${row.FullName}" /></td>
-                    <td><c:out value="${row.email}" /></td>
-                    <td><c:out value="${row.mobile}" /></td>                         
-                    <td><c:out value="${row.gender}" /></td>
-                    <td><c:out value="${row.address}" /></td>
+                String sql = "select * from  user_details ";
+
+//                String email = request.getParameter("email");
+//                String password = request.getParameter("password");
+
+               
+                PreparedStatement ps = con.prepareStatement(sql);
+
+//                ps.setString(1, email);
+//                ps.setString(2, password);
+
+                 adrs = ps.executeQuery();
+                while(adrs.next()) {
+    
+            %>
+            <tr>
+                <td><%=adrs.getInt(1)%></td>
+                <td><%=adrs.getString(2)%></td>
+                <td><%=adrs.getString(3)%></td>
+                <td><%=adrs.getString(4)%>)</td>
+                <td><%=adrs.getString(5)%></td>                         
+                <td><%=adrs.getString(6)%></td>
+                <td><%=adrs.getString(8)%></td>
+
+            <form action="UpdateUser.jsp">                       
+                <input id="#userinfo" name="userId" type="hidden" value="<%=adrs.getInt("userId")%>"  class="btn btn-secondary" data-toggle="modal" data-target="#userinfo"/>
+                <td><button type="submit" class="btn btn-secondary">Edit</button></td>                                    
+            </form>
 
 
-                    <td><button name="btn" value="${row.userId}" type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#userinfo">Edit</button></td>                                    
-                    <td><button  type="button" class="btn btn-danger" onclick="myDelete()">Delete</button></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-
-    </table>
-    <!-- table end  -->
-
-    <!-- modal start -=----------------------- -->
-
-    <div class="modal" id="userinfo" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <center><h5 class="modal-title">Userinfo</h5></center>
-                </div>
-                <form action="" method="post" onsubmit="return myEdituser()">
-                    <div class="modal-body">
+            <td><button  type="submit" class="btn btn-danger" onclick="myDelete()">Delete</button></td>
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input value="jj" type="text" class="form-control" name="UserName" id="UserName" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="FullName" id="FullName" placeholder="Full Name">
-                                </div>
+        </tr>
+        <% 
+  
+
+       }
+                
+       }catch(Exception e){
+                
+       System.out.println(e);
+                
+       }
+
+        %>
+        <!-------------------------------------------->
+
+
+
+
+
+        <!-------------------------------------------->
+
+    </tbody>
+
+</table>
+<!-- table end  -->
+
+<!-- modal start -=----------------------- -->
+
+<div class="modal" id="userinfo" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <center><h5 class="modal-title">Userinfo</h5></center>
+            </div>
+            <form action="" method="post" onsubmit="return myEdituser()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input value="" type="text" class="form-control" name="UserName" id="UserName" placeholder="Username">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
-                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="FullName" id="FullName" placeholder="Full Name">
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="tel" maxlength="10" class="form-control" name="mobile" id="phno" placeholder="Phone No">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="address" id="Address" placeholder="Address">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-end m-2">Save changes</button>
-                    <button type="button" class="btn btn-secondary float-end m-2" data-dismiss="modal">Close</button>
-                </form>          
-                <%
-               if(request.getParameter("UserName")!=null){
-               
-                String UserName = request.getParameter("UserName");
-                String FullName = request.getParameter("FullName");
-                String email =  request.getParameter("email");
-                 String mobile =    request.getParameter("mobile");
-                 String address =  request.getParameter("address");
-                 String btn =  request.getParameter("btn");
-                %>
-                <sql:update dataSource="${dataSource}">
-                    Update user_details set userName = ?,fullName=?, email=?, mobile=?, address =? where UserId = ?
-                    <sql:param value="<%= UserName %>" />
-                    <sql:param value="<%= FullName %>" />
-                    <sql:param value="<%= email %>" />
-                    <sql:param value="<%= mobile %>" />
-                    <sql:param value="<%= address %>" />
-                    <sql:param value="<%= btn %>" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="tel" maxlength="10" class="form-control" name="mobile" id="phno" placeholder="Phone No">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="address" id="Address" placeholder="Address">
+                    </div>
+                </div>
 
-                </sql:update>
-
-                <%}%>
-
-
-            </div>
+                <!--<input name="username" type="hidden" value="${row.userId}"/>-->
+                <button type="submit" class="btn btn-primary float-end m-2">Save changes</button>
+                <button type="button" class="btn btn-secondary float-end m-2" data-dismiss="modal">Close</button>
+            </form>      
 
         </div>
+
     </div>
+</div>
 </div>
 
 
@@ -276,3 +306,13 @@
     });
 </script>
 </html>
+
+
+<%
+
+}else{
+
+//        response.sendRedirect("AdminLogin.jsp");
+    }
+}
+%>

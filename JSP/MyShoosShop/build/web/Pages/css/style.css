@@ -7,6 +7,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Mohan_Maali
 */
 
+body{
+    background-color: white;
+    
+}
 
 @font-face {
     font-family: 'iran_sans_bold';

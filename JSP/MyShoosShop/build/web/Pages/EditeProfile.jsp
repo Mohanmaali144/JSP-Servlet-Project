@@ -9,17 +9,20 @@
 <%@page import = " java.sql.ResultSet"%>
 <!DOCTYPE html>
 <html>
-
+    <% 
+               ResultSet rs = (ResultSet)session.getAttribute("rs");
+               if(rs!=null){
+    %>
     <head>
         <title>User Information Change</title>
         <!-- Add Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <!-- Add custom CSS -->
         <style>
-            /*            body {
-                            background-color: #ffffff;
-                            font-family: Arial, sans-serif;
-                        }*/
+            body {
+                background-color: #ffffff;
+                font-family: Arial, sans-serif;
+            }
 
             .container {
 
@@ -38,12 +41,6 @@
     </head>
 
     <body>
-
-        <% 
-            ResultSet rs = (ResultSet)session.getAttribute("rs");
-        %>
-
-
 
         <jsp:include page="Navvar.jsp" />
 
@@ -233,15 +230,16 @@ if(request.getParameter("name")!=null)
 </sql:update>
 
 
-   <sql:query dataSource="${dataSource}" var="result">
+<sql:query dataSource="${dataSource}" var="result">
     SELECT * FROM user_details WHERE userId=?
-     <sql:param value="<%= userid %>"/>
+    <sql:param value="<%= userid %>"/>
 </sql:query> 
-   <c:set var="result" value="${sessionScope.rs}" /> 
+<c:set var="result" value="${sessionScope.rs}" /> 
 
-<%
+<%} 
 
+}else{
+     
      response.sendRedirect("Profile.jsp");
-                
- }
+}     
 %>

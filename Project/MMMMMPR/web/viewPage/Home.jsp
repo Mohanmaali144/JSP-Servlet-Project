@@ -15,7 +15,7 @@
     <% 
 //     response.setHeader("Cache-Control", "No-cache");
 //     response.setHeader("Cache-Control", "No-store");
-response.setHeader("Cache-Control", "no-cache, no-store");
+        response.setHeader("Cache-Control", "no-cache, no-store");
 
      ResultSet rs = (ResultSet)session.getAttribute("rs"); 
 

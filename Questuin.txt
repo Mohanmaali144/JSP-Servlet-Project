@@ -1,0 +1,66 @@
+What is different between web server and application server?
+Which HTTP method is non-idempotent?
+What is the difference between GET and POST method?
+What is MIME Type?
+What is a web application and what is its directory structure?
+What is a servlet?
+What are the advantages of Servlet over CGI?
+What are common tasks performed by Servlet Container?
+What is ServletConfig object?
+What is ServletContext object?
+
+What is difference between ServletConfig and ServletContext?
+What is Request Dispatcher?
+What is difference between PrintWriter and ServletOutputStream?
+Can we get PrintWriter and ServletOutputStream both in a servlet?
+How can we create deadlock situation in servlet?
+What is the use of servlet wrapper classes?
+What is SingleThreadModel interface?
+Do we need to override service() method?
+Is it good idea to create servlet constructor?
+What is difference between GenericServlet and HttpServlet?
+
+What is the inter-servlet communication?
+Are Servlets Thread Safe? How to achieve thread safety in servlets?
+What is servlet attributes and their scope?
+How do we call one servlet from another servlet?
+How can we invoke another servlet in a different application?
+What is difference between ServletResponse sendRedirect() and RequestDispatcher forward() method?
+c
+What are the phases of servlet life cycle?
+What are life cycle methods of a servlet?
+why we should override only no-agrs init() method.
+
+What is URL Encoding?
+What are different methods of session management in servlets?
+What is URL Rewriting?
+How does Cookies work in Servlets?
+How to notify an object in session when session is invalidated or timed-out?
+What is the difference between encodeRedirectUrl and encodeURL?
+Why do we have servlet filters?
+What is the effective way to make sure all the servlets are accessible only when user has a valid session?
+Why do we have servlet listeners?
+How to handle exceptions thrown by application with another servlet?
+
+What is a deployment descriptor?
+How to make sure a servlet is loaded at the application startup?
+How to get the actual path of servlet in server?
+How to get the server information in a servlet?
+Write a servlet to upload file on server.
+How do we go with database connection and log4j integration in servlet?
+How to get the IP address of client in servlet?
+What are important features of Servlet 3?
+What are different ways for servlet authentication?
+How can we achieve transport layer security for our web application?
+
+
+
+
+
+
+
+
+
+
+
+

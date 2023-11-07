@@ -22,9 +22,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 /* ===== Colours ===== */
 :root{
        --body-color: #ffffff;
-    --nav-color: #eaeaea;
+    --nav-color: #242526;
     --side-nav: #010718;
-    --text-color: #686767;
+    --text-color: #CCC;
     --search-bar: #F2F2F2;
     --search-text: #010718;
 }
@@ -35,7 +35,7 @@ body{
 }
 
 body.dark{
-    --body-color: #18191A;
+    --body-color: white;
     --nav-color: #242526;
     --side-nav: #242526;
     --text-color: #CCC;

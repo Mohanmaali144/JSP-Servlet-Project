@@ -1,0 +1,17 @@
+database: shoesshop
+
+
+
+tables: 
+
+CREATE TABLE userinfo (
+    id INT NOT NULL UNIQUE AUTO_INCREMENT,
+    name VARCHAR(20) NOT NULL,
+    username VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(25) NOT NULL UNIQUE,
+    mobile VARCHAR(10) NOT NULL,
+    gender VARCHAR(6) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    address VARCHAR(200) NOT NULL
+);
+ 
