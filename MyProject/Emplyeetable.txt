@@ -1,0 +1,8 @@
+CREATE TABLE Employeeinfo (
+    id INT PRIMARY KEY,
+    name VARCHAR(30) not null,
+    email VARCHAR(30) not null unique,
+    mobile VARCHAR(15) not null unique,
+    gender VARCHAR(10)not null,
+    password VARCHAR(80) not null
+);

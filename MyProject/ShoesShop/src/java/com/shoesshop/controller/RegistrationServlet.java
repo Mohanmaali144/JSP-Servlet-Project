@@ -1,4 +1,3 @@
-
 package com.shoesshop.controller;
 
 import com.shoesshop.model.UserDAO;
@@ -9,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class RegistrationServlet extends HttpServlet {
 
@@ -17,23 +17,31 @@ public class RegistrationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            
-            out.println("ashsu");
+            HttpSession session = request.getSession();
+
+//            out.println("ashsu");
             String name = request.getParameter("fullname");
             String userName = request.getParameter("username");
             String email = request.getParameter("email");
             String mobile = request.getParameter("mobile");
             String address = request.getParameter("address");
             String password = request.getParameter("password");
+            String gender = request.getParameter("gender");
 
-            UserDAO udao = new UserDAO(name, userName, email, mobile, "male", password, address);
+            UserDAO udao = new UserDAO(name, userName, email, mobile, gender, password, address);
             UserDTO udto = new UserDTO();
             out.print(password);
             if (udto.insert(udao)) {
-                 out.print(name);
-                response.sendRedirect("LoginServlet");
+                session.setAttribute("rError", "&nbsp");
+                session.setAttribute("error", "&nbsp");
+//                response.sendRedirect("LoginServlet");
+                response.sendRedirect("./Viewpack/Login.jsp");
+
+            } else {
+
+                session.setAttribute("rError", "invalid Value");
+                response.sendRedirect("./Viewpack/Registration.jsp");
             }
-             out.print(email);
         }
     }
 

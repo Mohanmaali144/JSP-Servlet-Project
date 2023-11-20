@@ -7,33 +7,39 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
+    <%
+            String error = "";
+            error   = (String)session.getAttribute("error");
+            if(error==null){error="&nbsp";}
+    %>
+
+
     <head>
         <meta charset="UTF-8">
         <title>Login Example</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="./css/LoginStyle.css"> 
+        <link rel="stylesheet" href="./css/LoginStyle.css"> 
         <!--<link rel="stylesheet" href="login.css">-->
     </head>
 
     <body>
         <div class="login-wrapper">
             <div class="login-side">
-                <a href="#" title="Logo">
-                    <img class="logo" src="assets/logo.png" alt="Logo">
-                </a>
+
                 <div class="my-form__wrapper">
                     <div class="login-welcome-row">
                         <h1>Welcome back &#x1F44F;</h1>
                         <p>Please enter your details!</p>
                     </div>
-                    <form action="/ShoesShop/LoginServlet" class="my-form" onsubmit="validation()">
+                    <form action="/ShoesShop/LoginServlet" method="POST" class="my-form" onsubmit="validation()">
                         <div class="socials-row">
                             <a href="#" title="Use Google">
-                                <img src="assets/google.png" alt="Google">
+
                                 Log in with Google
                             </a>
                             <a href="#" title="Use Apple">
-                                <img src="assets/apple.png" alt="Apple">
+
                                 Log in with Apple
                             </a>
                         </div>
@@ -46,18 +52,18 @@
                             <label for="username">username:</label>
                             <input onkeyup="unamevalidation()" type="text" id="username" name="username"
                                    placeholder="Your username" required>
-                            <img alt="Email Icon" title="Email Icon" src="assets/email.svg">
+
                             <span id="errorusername">&nbsp;</span>
                         </div>
                         <div class="text-field">
                             <label for="password">Password:</label>
                             <input onkeyup="passwordvalidation()" id="password" type="password" name="password"
                                    placeholder="Your Password" required>
-                            <img alt="Password Icon" title="Password Icon" src="assets/password.svg">
+
                             <span id="errorpassword">&nbsp;</span>
                         </div>
                         <input type="submit" class="my-form__button" value="Login">
-                        <span id="mainerror">&nbsp;</span>
+                        <span style="color: red" id="mainerror">&nbsp;<%=error%></span>
                         <div class="my-form__actions">
                             <div class="my-form__row">
                                 <span>Did you forget your password?</span>

@@ -16,6 +16,34 @@
         <servlet-name>UpdateController</servlet-name>
         <servlet-class>com.shoesshop.controller.UpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePassword</servlet-name>
+        <servlet-class>com.shoesshop.controller.UpdatePassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmployeeRegController</servlet-name>
+        <servlet-class>com.shoesshop.controller.EmployeeRegController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmployeeLoginController</servlet-name>
+        <servlet-class>com.shoesshop.controller.EmployeeLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpPasswordUpdate</servlet-name>
+        <servlet-class>com.shoesshop.controller.EmpPasswordUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmpPUpdateController</servlet-name>
+        <servlet-class>com.shoesshop.controller.EmpPUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductController</servlet-name>
+        <servlet-class>com.shoesshop.controller.ProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInfoController</servlet-name>
+        <servlet-class>com.shoesshop.controller.UserInfoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -31,5 +59,33 @@
     <servlet-mapping>
         <servlet-name>UpdateController</servlet-name>
         <url-pattern>/UpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassword</servlet-name>
+        <url-pattern>/UpdatePassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeRegController</servlet-name>
+        <url-pattern>/EmployeeRegController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeLoginController</servlet-name>
+        <url-pattern>/EmployeeLoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpPasswordUpdate</servlet-name>
+        <url-pattern>/EmpPasswordUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmpPUpdateController</servlet-name>
+        <url-pattern>/EmpPUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductController</servlet-name>
+        <url-pattern>/ProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfoController</servlet-name>
+        <url-pattern>/UserInfoController</url-pattern>
     </servlet-mapping>
 </web-app>

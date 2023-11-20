@@ -1,18 +1,27 @@
 package com.shoesshop.model;
 
 import com.shoesshop.service.GetConnection;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.util.Arrays;
+import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
 public class UserDTO {
+
+    private static SecretKeySpec secretKey;
+    private static byte[] key;
 
 //    -------login----
     public boolean login(UserDAO udao) {
 
         Connection con = GetConnection.getConnection();
-        String query = "select * from userinfo where username = ? AND password = ?";
+        String query = "select * from userinfo where username = ?";
 
         System.out.println(query);
 
@@ -23,24 +32,27 @@ public class UserDTO {
 
                 PreparedStatement ps = con.prepareStatement(query);
                 ps.setString(1, udao.getUserName());
-                ps.setString(2, udao.getPassword());
-
-                System.out.println("---------------------------------");
-                System.out.println("usename   page = " + udao.getUserName());
-                System.out.println("userpassword   page = " + udao.getPassword());
-                System.out.println("---------------------------------");
 
                 ResultSet rs = ps.executeQuery();
 
                 System.out.println("---------------------------------");
                 if (rs.next()) {
-                    System.out.println("++++++++++++");
-                    System.out.println(rs.getString(3));
-                    System.out.println("++++++++++++");
-                    System.out.println(rs.getInt(1));
-                    b = true;
-                }
+                    String encryptedPasswordFromDB = rs.getString("password"); // Get the encrypted password from the database
+                    String decryptedPassword = decrypt(encryptedPasswordFromDB); // Decrypt the password from the database
+                    if (decryptedPassword.equals(udao.getPassword())) { // Compare the decrypted password with the input password
+                        b = true;
 
+                        udao.setId(rs.getInt("id"));
+                        udao.setName(rs.getString("name"));
+                        udao.setUserName(rs.getString("userName"));
+                        udao.setEmail(rs.getString("email"));
+                        udao.setMobile(rs.getString("mobile"));
+                        udao.setGender(rs.getString("gender"));
+                        udao.setAddress(rs.getString("address"));
+                        udao.setPassword(decryptedPassword);
+
+                    }
+                }
             } catch (SQLException ex) {
 
                 System.out.println("some Exception");
@@ -60,6 +72,8 @@ public class UserDTO {
         if (con != null) {
             try {
 
+                String encryptPassword = encrypt(udao.getPassword());
+
                 PreparedStatement ps = con.prepareStatement(query);
 
                 System.out.println(udao.getName());
@@ -70,7 +84,7 @@ public class UserDTO {
                 ps.setString(4, udao.getMobile());
 
                 ps.setString(5, udao.getGender());
-                ps.setString(6, udao.getPassword());
+                ps.setString(6, encryptPassword);
                 ps.setString(7, udao.getAddress());
 
                 System.out.println(udao.getAddress());
@@ -109,6 +123,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
 
@@ -133,6 +148,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
 
@@ -157,6 +173,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
 
@@ -165,22 +182,26 @@ public class UserDTO {
 
     public boolean updatePassword(UserDAO udao) {
         Connection con = GetConnection.getConnection();
-        String query = "UPDATE userinfo SET password = ? WHERE id = ?";
+        String query = "UPDATE userinfo SET password = ? WHERE email = ?";
         boolean result = false;
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setString(1, udao.getPassword());
-            ps.setInt(2, udao.getId());
 
+            String encryptPassword = encrypt(udao.getPassword());
+            ps.setString(1, encryptPassword);
+            ps.setString(2, udao.getEmail());
+            System.out.println("email   ===   " + udao.getEmail());
             if (ps.executeUpdate() > 0) {
 
+                System.out.println("email   ===   " + udao.getEmail());
                 result = true;
             }
 
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(" " + e);
             result = false;
         }
 
@@ -230,6 +251,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
 
@@ -254,6 +276,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
 
@@ -262,7 +285,7 @@ public class UserDTO {
 
     public boolean updateAll(UserDAO udao) {
         Connection con = GetConnection.getConnection();
-        String query = "UPDATE userinfo SET name =?,username =?, email = ?,mobile =?,gender=? WHERE id = ?";
+        String query = "UPDATE userinfo SET name =?,username =?, email = ?,mobile =?,address =? WHERE id = ?";
         boolean result = false;
         try {
 
@@ -271,7 +294,7 @@ public class UserDTO {
             ps.setString(2, udao.getUserName());
             ps.setString(3, udao.getEmail());
             ps.setString(4, udao.getMobile());
-            ps.setString(5, udao.getGender());
+            ps.setString(5, udao.getAddress());
             ps.setInt(6, udao.getId());
 
             if (ps.executeUpdate() > 0) {
@@ -282,6 +305,7 @@ public class UserDTO {
         } catch (SQLException e) {
 
             System.out.println("some Exception");
+            System.out.println(e);
             result = false;
         }
         return result;
@@ -394,7 +418,7 @@ public class UserDTO {
 
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, udao.getUserName());
-            
+
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -411,4 +435,77 @@ public class UserDTO {
         return null;
     }
 
+//    -----------------------
+    public UserDAO[] getAllUser() {
+        Connection con = GetConnection.getConnection();
+        String query = "SELECT * FROM userinfo";
+        UserDAO usdao[] = new UserDAO[100];
+        try {
+
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            while(rs.next()) {
+                usdao[i] = new UserDAO();
+                
+                usdao[i].setId(rs.getInt("id"));
+                usdao[i].setName(rs.getString("name"));
+                usdao[i].setUserName(rs.getString("username"));
+                usdao[i].setEmail(rs.getString("email"));
+                usdao[i].setMobile(rs.getString("mobile"));
+                usdao[i].setGender(rs.getString("gender"));
+                usdao[i].setAddress(rs.getString("address"));
+                i++;
+            }
+//            return usdao;
+        } catch (SQLException e) {
+
+            System.out.println("some Exception");
+            return null;
+
+        }
+
+        return usdao;
+    }
+
+//    -----------------password encrypt-----------------
+    public static void setKey(String myKey) {
+        try {
+            key = myKey.getBytes("UTF-8");
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            key = sha.digest(key);
+            key = Arrays.copyOf(key, 16); // use only first 128 bit
+            secretKey = new SecretKeySpec(key, "AES");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String encrypt(String strToEncrypt) {
+        try {
+            setKey("encryptionKey"); // You can modify the encryption key here
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (Exception e) {
+            System.out.println("Error while encrypting: " + e.toString());
+        }
+        return null;
+    }
+
+    public static String decrypt(String strToDecrypt) {
+        try {
+            setKey("encryptionKey"); // You can modify the encryption key here
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+//            System.out.println("Input length: " + strToDecrypt.length()); // Log the length of the input string
+            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+        } catch (Exception e) {
+            System.out.println("Error while decrypting: " + e.toString());
+        }
+
+        return null;
+    }
+
+//    --------------------
 }

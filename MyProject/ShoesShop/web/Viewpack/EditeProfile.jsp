@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.*"%>
+<%@page import="com.shoesshop.model.UserDAO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,12 +25,16 @@
             }
 
         
-            ResultSet rs =(ResultSet)session.getAttribute("rs");%>
+        UserDAO udao = (UserDAO)session.getAttribute("udao");
+        response.setHeader("Cache-Control", "No-Cache");
+        response.setHeader("Cache-Control", "No-Store"); 
+        
+        %>
 
         <div class="form-wrapper">
             <div class="form-side">
 
-                <form action="/ShoesShop/UpdateController" class="my-form" onsubmit="validation()">
+                <form action="/ShoesShop/UpdateController" method="POST" class="my-form" onsubmit="validation()">
                     <div class="login-welcome-row">
                         <h1>Update your account &#x1F44F;</h1>
                     </div>
@@ -39,7 +43,7 @@
 
                     <div class="text-field">
                         <label for="email">Fullname:
-                            <input onkeyup="namevalidation()" type="text" id="Fullname" name="fullname" autocomplete="off" value="<%=rs.getString("name")%>"
+                            <input onkeyup="namevalidation()" type="text" id="Fullname" name="fullname" autocomplete="off" value="<%=udao.getName()%>"
                                    placeholder="Fullname" required>
                             <span id="errorname">&nbsp;</span>
                         </label>
@@ -47,7 +51,7 @@
 
                     <div class="text-field">
                         <label for="email">Username:
-                            <input onkeyup="unamevalidation()" type="text" id="Username" name="username" autocomplete="off" value="<%=rs.getString("username")%>"
+                            <input onkeyup="unamevalidation()" type="text" id="Username" name="username" autocomplete="off" value="<%=udao.getUserName()%>"
                                    placeholder="Username" required>
                             <span id="errorusername">&nbsp;</span>
                         </label>
@@ -56,7 +60,7 @@
 
                     <div class="text-field">
                         <label for="email">Email:
-                            <input onkeyup="emailvalidation()" type="email" id="email" name="email" autocomplete="off" value="<%=rs.getString("email")%>"
+                            <input onkeyup="emailvalidation()" type="email" id="email" name="email" autocomplete="off" value="<%=udao.getEmail()%>"
                                    placeholder="Your Email" required>
                             <span id="erroremail">&nbsp;</span>
                         </label>
@@ -65,7 +69,7 @@
 
                     <div class="text-field">
                         <label for="dob">Mobile:
-                            <input onkeyup="mobilevalidation()" type="text" maxlength="10" id="mobile" name="mobile" value="<%=rs.getString("mobile")%>"
+                            <input onkeyup="mobilevalidation()" type="text" maxlength="10" id="mobile" name="mobile" value="<%=udao.getMobile()%>"
                                    autocomplete="off" placeholder="Phone - no" required>
                             <span id="errormobile">&nbsp;</span>
                         </label>
@@ -73,7 +77,7 @@
 
                     <div class="text-field">
                         <label for="address">Address:
-                            <input onkeyup="advalidation()" type="text" id="address" name="address" autocomplete="off" value="<%=rs.getString("address")%>"
+                            <input onkeyup="advalidation()" type="text" id="address" name="address" autocomplete="off" value="<%=udao.getAddress()%>"
                                    placeholder="Address" required>
                             <span id="erroraddress">&nbsp;</span>
                         </label>
@@ -86,12 +90,12 @@
                         <div class="my-form__row">
                             <!--                            <span>Did you forget your password?</span>-->
                             <span><%=msg%></span>
-                            <a href="#" title="Reset Password">
+                            <a href="PasswordUpdate.jsp">
                                 Reset Password
                             </a>
                         </div>
                         <div class="my-form__signup">
-                            <a href="index.html" title="Login">
+                            <a href="Home.jsp" >
                                 Back
                             </a>
                         </div>

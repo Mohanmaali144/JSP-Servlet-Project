@@ -6,14 +6,20 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
+<%@page import="com.shoesshop.model.UserDAO"%>
+<%@page import="com.shoesshop.model.ProductDAO"%>
 
 <% 
-     ResultSet rs = (ResultSet)session.getAttribute("rs");
-    response.setHeader("Cache-Control", "No-cache");
-    response.setHeader("Cache-Control", "No-store"); 
-   
+        UserDAO udao = (UserDAO)session.getAttribute("udao");
+        response.setHeader("Cache-Control", "No-Cache");
+        response.setHeader("Cache-Control", "No-Store"); 
+       
+//        ProductDAO prodao = (ProductDAO) session.getAttribute("prodao");
+        ProductDAO[] prodao = (ProductDAO[]) session.getAttribute("prodao");
+        System.out.println(prodao[1].getName());
+        System.out.println(prodao[0].getModel());
         
-        if(rs!=null){
+        if(udao!=null){
     
 %>
 <html>
@@ -30,7 +36,7 @@
         <header>
             <div id="menu-bar" class="fa fa-bars"></div>
             <!--<a href="#" class="logo">Shoes.bazar</a>-->
-            <a href="#" class="logo"><%=rs.getString("username")%></a>
+            <a href="#" class="logo"><%=udao.getUserName()%></a>
             <nav class="navbar">
                 <a href="#home">Home</a>
                 <a href="#product">Product</a>
@@ -55,17 +61,20 @@
             <div class="slide-container active">
                 <div class="slide">
                     <div class="content">
-                        <span>Nike Sport Shoes</span>
-                        <h3>Nike Metcon Shoes</h3>
+                        <span><%=prodao[0].getModel()%></span>
+                        
+                        <!--                        <h3>Nike Metcon Shoes</h3>-->
+                        <h3><%=prodao[0].getCategory()%></h3>
                         <p>
-                            Nike sports shoes best qulity long lastic sole made by nike by tested and petend farmula
+                            <!--Nike sports shoes best qulity long lastic sole made by nike by tested and petend farmula-->
+                            <%=prodao[0].getDescription()%>
                         </p>
-                        <div class="price"><Span>11000/-</Span>order now! </div>
+                        <div class="price"><Span> <%=prodao[0].getPrice()%>/-</Span>order now! </div>
                         <a href="#" class="btn">add to card</a>
                         <a href="#" class="btn">Buy</a>
                     </div>
                     <div class="image">
-                        <img src="./img/slide/1.png" class="shoe">
+                        <img src="./img/slide/1.png" class="shoes">
                     </div>
                 </div>
             </div>

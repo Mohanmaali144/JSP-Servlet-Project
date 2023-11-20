@@ -21,44 +21,31 @@ public class UpdateController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            out.print("sdvdfvdfv");
+//            out.print("sdvdfvdfv");
             HttpSession session = request.getSession();
-            ResultSet rs = (ResultSet) session.getAttribute("rs");
+            UserDAO udao = (UserDAO) session.getAttribute("udao");
             String name = request.getParameter("fullname");
             String userName = request.getParameter("username");
             String email = request.getParameter("email");
             String mobile = request.getParameter("mobile");
             String address = request.getParameter("address");
 
-            UserDAO udao = new UserDAO();
             udao.setName(name);
             udao.setUserName(userName);
             udao.setEmail(email);
             udao.setMobile(mobile);
             udao.setAddress(address);
-            try {
-                udao.setId(rs.getInt("id"));
-            } catch (SQLException ex) {
-                Logger.getLogger(UpdateController.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
             UserDTO udto = new UserDTO();
 
-            boolean a = udto.updateName(udao);
-
-            if (udto.updateName(udao) && udto.updateUserName(udao) && udto.updateUserName(udao) && udto.updateEmail(udao) && udto.updateMobile(udao) && udto.updateAddress(udao)) {
-
-                rs = udto.getInfo(udao);
-                System.out.println(rs);
+//            boolean a = udto.updateName(udao);
+            if (udto.updateAll(udao)) {
+             
                 session.setAttribute("msg", "Update Succesfull");
                 System.out.println("AFTER UPDATE");
 
-                session.setAttribute("rs", rs);
-//                    System.out.println("mobile === " + rs.getString(mobile));
-
             } else {
                 session.setAttribute("msg", "faild to update details");
-
             }
             response.sendRedirect("./Viewpack/EditeProfile.jsp");
         }

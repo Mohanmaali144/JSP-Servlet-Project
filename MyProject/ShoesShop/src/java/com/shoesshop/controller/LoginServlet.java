@@ -29,22 +29,22 @@ public class LoginServlet extends HttpServlet {
             udao.setPassword(password);
 
             UserDTO udto = new UserDTO();
-
+            HttpSession session = request.getSession();
             System.out.println(password);
             boolean b = udto.login(udao);
             if (b) {
 
                 ResultSet rs = udto.getInfo(udao);
-                HttpSession session = request.getSession();
                 session.setAttribute("rs", rs);
-                out.print("_____________________________");
+                session.setAttribute("udao", udao);
 
-                out.print("Log in succsess");
-                response.sendRedirect("./Viewpack/Home.jsp");
-            }
-            else{
-            
-                  response.sendRedirect("./Viewpack/Login.jsp");
+//                ----------------------
+                response.sendRedirect("ProductController");
+//                ----------------------
+//                response.sendRedirect("./Viewpack/Home.jsp");
+            } else {
+                session.setAttribute("error", "Account not found");
+                response.sendRedirect("./Viewpack/Login.jsp");
             }
         }
     }

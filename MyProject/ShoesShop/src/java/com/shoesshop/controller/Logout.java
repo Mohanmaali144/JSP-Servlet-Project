@@ -17,6 +17,7 @@ public class Logout extends HttpServlet {
 
             HttpSession session = request.getSession();
             session.setAttribute("rs", null);
+            session.setAttribute("error", null);
             session.invalidate();
             response.sendRedirect("./Viewpack/Login.jsp");
         }
